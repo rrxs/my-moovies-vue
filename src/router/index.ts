@@ -2,50 +2,38 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import SignupView from '../views/SignupView.vue'
-import DefaultLayout from '../layouts/DefaultLayout.vue'
-import LoginLayout from '../layouts/LoginLayout.vue'
-import SignupCall from '../components/SignupCall.vue'
-import SigninCall from '../components/SigninCall.vue'
+import NotFoundView from '../views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/login',
-      component: LoginLayout,
-      children: [
-        {
-          path: '/login',
-          name: 'signin',
-          components: {
-            default: LoginView,
-            RightSide: SignupCall
-          }
-        },
-        {
-          path: '/signup',
-          name: 'signup',
-          components: {
-            default: SignupView,
-            RightSide: SigninCall
-          }
-        }
-      ]
+      name: 'signin',
+      component: LoginView
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignupView
     },
     {
       path: '/',
-      component: DefaultLayout,
-      children: [
-        {
-          path: '/',
-          name: 'home',
-          components: {
-            default: HomeView
-          }
-        }
-      ]
+      name: 'home',
+      component: HomeView
+    },
+    {
+      path: '/movies',
+      name: 'movies',
+      component: HomeView
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: NotFoundView
     }
   ]
 })
+
+//router.beforeEach((to, from, next) => {})
 
 export default router

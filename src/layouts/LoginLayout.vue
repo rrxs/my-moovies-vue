@@ -9,8 +9,7 @@
             <div class="text-center">
               <img class="mx-auto w-48 my-10" src="../assets/logo.png" alt="logo" />
             </div>
-
-            <router-view />
+            <slot />
           </div>
         </div>
 
@@ -19,7 +18,7 @@
           class="flex items-center lg:w-6/12"
           style="background: linear-gradient(to top, #11417e, #1452dc)"
         >
-          <router-view name="RightSide" />
+          <slot name="right-column" />
         </div>
       </div>
     </div>
