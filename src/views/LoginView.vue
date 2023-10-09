@@ -21,12 +21,21 @@
 </template>
 
 <script setup lang="ts">
+import { loginUser } from '../api/auth.api'
 import SignupCall from '../components/SignupCall.vue'
 import LoginLayout from '../layouts/LoginLayout.vue'
 import router from '../router'
 
-const login = () => {
+const login = async () => {
   // todo validation, authentication
-  router.push({ name: 'home' })
+  try {
+    const response = await loginUser({
+      email: 'r@r.com'
+    })
+    router.push({ name: 'home' })
+    console.log(response)
+  } catch (error) {
+    console.log(error)
+  }
 }
 </script>

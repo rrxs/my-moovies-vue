@@ -8,8 +8,12 @@
     font-family: 'Inter', system-ui, sans-serif;
     color: #474747;
   }
+  h2 {
+    font-size: 32px;
+    font-weight: bold;
+  }
   h3 {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: bold;
   }
 }
