@@ -52,7 +52,7 @@
           </router-link>
         </li>
         <li class="border-b">
-          <a href="#" @click="logout" class="flex items-center p-2 py-4 hover:bg-slate-50 group">
+          <a href="#" @click="logoutUser" class="flex items-center p-2 py-4 hover:bg-slate-50 group">
             <span class="">Logout</span>
           </a>
         </li>
@@ -66,10 +66,10 @@
 
 <script setup lang="ts">
 import router from '../router'
-import { clearUserData } from '../api/auth.api'
+import { logout } from '../api/auth.api'
 
-const logout = () => {
-  clearUserData()
+const logoutUser = () => {
+  logout()
   router.replace({ name: 'signin' })
 }
 </script>

@@ -1,5 +1,6 @@
 import httpClient from './httpClient'
 import type { LoginRequest, LoginResponse } from './models/login.models'
+import type { SignupRequest, SignupResponse } from './models/signup.models'
 
 const saveToken = (token: string) => {
   localStorage.setItem('token', token)
@@ -11,10 +12,20 @@ const clearUserData = () => {
   return localStorage.clear()
 }
 
-const loginUser = async (loginRequest: LoginRequest): Promise<LoginResponse> => {
-  const response = await httpClient.post<LoginResponse>('/api/login', loginRequest)
+const signin = async (loginRequest: LoginRequest): Promise<LoginResponse> => {
+  const response = await httpClient.post<LoginResponse>('/api/auth/signin', loginRequest)
   saveToken(response.data.accessToken)
   return response.data
 }
 
-export { loginUser, getToken, clearUserData }
+const signup = async (signupRequest: SignupRequest): Promise<SignupResponse> => {
+  const response = await httpClient.post<SignupResponse>('/api/auth/signup', signupRequest)
+  saveToken(response.data.accessToken)
+  return response.data
+}
+
+const logout = () => {
+  clearUserData()
+}
+
+export { signin, signup, getToken, logout }

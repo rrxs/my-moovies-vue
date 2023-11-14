@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { loginUser } from '../api/auth.api'
+import { signin } from '../api/auth.api'
 import SignupCall from '../components/SignupCall.vue'
 import LoginLayout from '../layouts/LoginLayout.vue'
 import router from '../router'
@@ -29,7 +29,7 @@ import router from '../router'
 const login = async () => {
   // todo validation, authentication
   try {
-    const response = await loginUser({
+    const response = await signin({
       email: 'r@r.com'
     })
     router.push({ name: 'home' })
