@@ -9,21 +9,22 @@ const httpClient = axios.create({
   }
 })
 
-const authInterceptor = (config: InternalAxiosRequestConfig) => {
+httpClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   config.headers['Authorization'] = `Bearer ${getToken()}`
   return config
-}
+})
 
-httpClient.interceptors.request.use(authInterceptor)
-
-httpClient.interceptors.response.use(response => {
-  return response;
-}, error => {
- if (error.response.status === 401) {
-  logout()
-  router.push('login')
- }
- return error;
-});
+httpClient.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      logout()
+      router.push('login')
+    }
+    return error
+  }
+)
 
 export default httpClient
