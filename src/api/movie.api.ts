@@ -6,4 +6,14 @@ const getPopularMovies = async (): Promise<Movie[]> => {
   return response.data
 }
 
-export { getPopularMovies }
+const markMovieWatched = async (idMovie: number): Promise<boolean> => {
+  const response = await httpClient.post('/api/movies/mark-watched', { idMovie })
+  return response.status === 200
+}
+
+const markMovieUnWatched = async (idMovie: number): Promise<boolean> => {
+  const response = await httpClient.post('/api/movies/mark-unwatched', { idMovie })
+  return response.status === 200
+}
+
+export { getPopularMovies, markMovieWatched, markMovieUnWatched }
